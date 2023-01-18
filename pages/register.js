@@ -9,6 +9,9 @@ const register = () => {
     <div>register</div>
     <div>register</div>
     <div>register</div>
+    <div>register sfdsdf</div>
+    <div>register</div>
+    <div>register</div>
     <div>register</div>
   )
 }
