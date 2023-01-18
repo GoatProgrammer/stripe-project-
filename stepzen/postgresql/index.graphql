@@ -1,0 +1,315 @@
+"""
+Table 'checks ' aliased as GQLName: 'Checks_'
+"""
+type Checks_ {
+  check_date: DateTime
+  created_at: DateTime
+  id: ID!
+  keyid: ID
+  uid: ID
+}
+
+"""
+Table 'Keywords ' aliased as GQLName: 'Keywords_'
+"""
+type Keywords_ {
+  created_at: DateTime
+  id: ID!
+  keyword: String
+  last: ID
+  pos: ID
+  webid: ID
+}
+
+"""
+Table 'roles' aliased as GQLName: 'Roles'
+Column: 'name_'
+  SQLName: 'name ' aliased as GQLName: 'name_'
+"""
+type Roles {
+  created_at: DateTime
+  id: ID!
+  name_: String
+}
+
+"""
+Table 'users' aliased as GQLName: 'Users'
+"""
+type Users {
+  email: String
+  id: ID!
+  image: String
+  name: String
+  roleid: ID
+}
+
+"""
+Table 'websites' aliased as GQLName: 'Websites'
+"""
+type Websites {
+  created_at: DateTime
+  id: ID!
+  uid: ID
+  url: String
+}
+
+"""
+The following queries are just a set of examples of how to access your schema.
+Feel free to modify them or aggregate more.
+"""
+type Query {
+  " Queries for type 'Checks_' "
+  getChecks_List: [Checks_]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "checks "
+      configuration: "postgresql_config"
+    )
+  getChecks_PaginatedList(first: Int, after: Int): [Checks_]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "check_date", "created_at", "id", "keyid", "uid" FROM "checks " LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Keywords_' "
+  getKeywords(webid: ID!): [Keywords_]
+  @dbquery (
+    type: "postgresql"
+    schema: "public"
+    query: """
+      SELECT * FROM "keywords" WHERE "webid" = $1
+    """
+    configuration: "postgresql_config"
+  )
+  getKeywords_List: [Keywords_]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "keywords"
+      configuration: "postgresql_config"
+    )
+  getKeywords_PaginatedList(first: Int, after: Int): [Keywords_]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "keyword", "last", "pos", "webid" FROM keywords " LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Roles' "
+  getRolesById(id: ID!): [Roles]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "name " as "name_" FROM "roles" WHERE "id" = $1
+      """
+      configuration: "postgresql_config"
+    )
+  getRolesByIdAndCreated_at(id: ID!, created_at: DateTime!): [Roles]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "name " as "name_" FROM "roles" WHERE "id" = $1 AND "created_at" = $2
+      """
+      configuration: "postgresql_config"
+    )
+  getRolesList: [Roles]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "roles"
+      configuration: "postgresql_config"
+    )
+  getRolesPaginatedList(first: Int, after: Int): [Roles]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "name " as "name_" FROM "roles" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Users' "
+  getUsersList: [Users]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "users"
+      configuration: "postgresql_config"
+    )
+  getUsersPaginatedList(first: Int, after: Int): [Users]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "email", "id", "image", "name", "roleid" FROM "users" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Websites' "
+  getWebsites(uid: ID!): [Websites]
+  @dbquery (
+    type: "postgresql"
+    schema: "public"
+    query: """
+      SELECT * FROM "websites" WHERE "uid" = $1
+    """
+    configuration: "postgresql_config"
+  )
+  getWebsitesList: [Websites]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "websites"
+      configuration: "postgresql_config"
+    )
+  getWebsitesPaginatedList(first: Int, after: Int): [Websites]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "uid", "url" FROM "websites" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+}
+
+"""
+The following mutations are just a set of examples of how to access your schema.
+Feel free to modify them or aggregate more.
+"""
+type Mutation {
+  " Mutations for type 'Checks_' "
+  deleteChecks_(
+    keyid: ID!
+    check_date: DateTime!
+    id: ID!
+    uid: ID!
+    created_at: DateTime!
+  ): Checks_
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "checks "
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertChecks_(
+    keyid: ID
+    check_date: DateTime
+    uid: ID
+    created_at: DateTime
+  ): Checks_
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "checks "
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Keywords_' "
+  deleteKeywords_(
+    webid: ID!
+    pos: ID!
+    last: ID!
+    keyword: String!
+    id: ID!
+    created_at: DateTime!
+  ): Keywords_
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "Keywords "
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertKeywords_(
+    webid: ID
+    pos: ID
+    last: ID
+    keyword: String
+    created_at: DateTime
+  ): Keywords_
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "Keywords "
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Roles' "
+  deleteRoles(created_at: DateTime!, name_: String!, id: ID!): Roles
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "roles"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertRoles(created_at: DateTime, name_: String): Roles
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "roles"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Users' "
+  deleteUsers(
+    name: String!
+    roleid: ID!
+    email: String!
+    image: String!
+    id: ID!
+  ): Users
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "users"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertUsers(
+    name: String
+    roleid: ID
+    email: String
+    image: String
+    id: ID!
+  ): Users
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "users"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Websites' "
+  deleteWebsites(
+    uid: ID!
+    created_at: DateTime!
+    url: String!
+    id: ID!
+  ): Websites
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "websites"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertWebsites(uid: ID, created_at: DateTime, url: String): Websites
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "websites"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+}

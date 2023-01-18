@@ -6,10 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gitadd": "git add .",
+    "gitcommit": "git commit -m 'another commit'"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.4",
+    "@next-auth/supabase-adapter": "^0.2.1",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@stripe/stripe-js": "^1.46.0",
+    "@supabase/supabase-js": "^2.4.0",
+    "axios": "^1.2.2",
+    "g": "^2.0.1",
+    "graphql": "^16.6.0",
+    "jsonwebtoken": "^9.0.0",
     "next": "13.1.2",
+    "next-auth": "^4.18.8",
+    "puppeteer": "^19.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
