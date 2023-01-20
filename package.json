@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "gitadd": "git add .",
-    "gitcommit": "git commit -m 'another commit'"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.7.4",
