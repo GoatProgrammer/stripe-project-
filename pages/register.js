@@ -7,14 +7,10 @@ const register = () => {
     <div>register</div>
     <div>register</div>
     <div>register</div>
-    <div>register</div>
-    <div>register SDFSDFSF</div>
-    <div>register DFASDFSDF</div>
-    <div>register SDFASDF</div>
-    <div>register sfdsdf</div>
-    <div>register</div>
-    <div>register</div>
-    <div>register</div>
+    <div>WELL DAMN</div>x
+    < div > WELL DAMN</div > x
+      < div > WELL DAMN</div > x
+        < div > WELL DAMN</div > x
   )
 }
 
